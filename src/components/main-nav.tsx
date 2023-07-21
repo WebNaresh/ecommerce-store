@@ -8,7 +8,7 @@ interface MainNavProps {
   data: Category[];
 }
 
-const MainNav: React.FC<MainNavProps> = async ({ data }) => {
+const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathName = usePathname();
 
   const routes = data.map((route) => ({
