@@ -5,9 +5,9 @@ import getSizes from "@/actions/get-sizes";
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";
 import NoResult from "@/components/ui/no-result";
+import ProductCard from "@/components/ui/product-card";
 import Filter from "./components/filter";
-
-export const reavalidate = 0;
+import MobileFilter from "./components/mobile-filter";
 
 interface CategryIdProps {
   params: {
@@ -36,13 +36,18 @@ const CategryId: React.FC<CategryIdProps> = async ({
       <Container>
         <Billboard data={category.billboard} />
         <div className="px-4 sm:px-6 lg:px-8 pb-24">
-          {/* Add Mobile Filters */}
+          <MobileFilter sizes={sizes} colors={colors} />
           <div className="hidden lg:block">
             <Filter valueKey="sizeId" name="Sizes" data={sizes} />
             <Filter valueKey="colorId" name="Colors" data={colors} />
           </div>
           <div className="mt-6 lg:col-span-4 lg:mt-0">
             {products.length === 0 && <NoResult />}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {products.map((item) => (
+                <ProductCard key={item.id} data={item} />
+              ))}
+            </div>
           </div>
         </div>
       </Container>
